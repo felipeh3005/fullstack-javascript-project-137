@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RSS Aggregator</title>
+  </head>
+  <body class="bg-light">
+    <main class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="card shadow-sm border-0">
+            <div class="card-body p-4 p-md-5">
+              <h1 class="display-6 mb-3">RSS Aggregator</h1>
+              <p class="text-muted mb-4">Add an RSS feed URL to get started.</p>
+
+              <form class="row g-3">
+                <div class="col-12 col-md-9">
+                  <label for="rss-url" class="form-label visually-hidden">RSS URL</label>
+                  <input
+                    id="rss-url"
+                    name="url"
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder="https://example.com/feed.xml"
+                  />
+                </div>
+                <div class="col-12 col-md-3 d-grid">
+                  <button type="submit" class="btn btn-primary btn-lg">Add feed</button>
+                </div>
+              </form>
+
+              <div class="row g-4 mt-4">
+                <div class="col-12 col-lg-6">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h2 class="h5">Feeds</h2>
+                      <p class="text-muted mb-0">No feeds added yet.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h2 class="h5">Posts</h2>
+                      <p class="text-muted mb-0">No posts to display yet.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
