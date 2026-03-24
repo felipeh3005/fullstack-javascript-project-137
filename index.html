@@ -14,26 +14,34 @@
               <h1 class="display-6 mb-3">RSS Aggregator</h1>
               <p class="text-muted mb-4">Add an RSS feed URL to get started.</p>
 
-              <form class="row g-3">
+              <form class="rss-form row g-3 position-relative" novalidate>
+                <div class="col-12">
+                  <label for="rss-url" class="form-label">RSS link</label>
+                </div>
                 <div class="col-12 col-md-9">
-                  <label for="rss-url" class="form-label visually-hidden">RSS URL</label>
                   <input
                     id="rss-url"
                     name="url"
                     type="text"
+                    required
+                    autocomplete="off"
+                    autofocus
                     class="form-control form-control-lg"
                     placeholder="https://example.com/feed.xml"
                   />
                 </div>
                 <div class="col-12 col-md-3 d-grid">
-                  <button type="submit" class="btn btn-primary btn-lg">Add feed</button>
+                  <button type="submit" class="btn btn-primary btn-lg">Añadir</button>
+                </div>
+                <div class="col-12">
+                  <p class="feedback mb-0 small"></p>
                 </div>
               </form>
 
               <div class="row g-4 mt-4">
                 <div class="col-12 col-lg-6">
                   <div class="card h-100">
-                    <div class="card-body">
+                    <div class="card-body feeds">
                       <h2 class="h5">Feeds</h2>
                       <p class="text-muted mb-0">No feeds added yet.</p>
                     </div>
@@ -41,7 +49,7 @@
                 </div>
                 <div class="col-12 col-lg-6">
                   <div class="card h-100">
-                    <div class="card-body">
+                    <div class="card-body posts">
                       <h2 class="h5">Posts</h2>
                       <p class="text-muted mb-0">No posts to display yet.</p>
                     </div>
