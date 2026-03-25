@@ -1,10 +1,20 @@
 import * as yup from 'yup';
 
+yup.setLocale({
+  mixed: {
+    required: 'errors.required',
+    notOneOf: 'errors.duplicate',
+  },
+  string: {
+    url: 'errors.invalidUrl',
+  },
+});
+
 const createSchema = (feeds) => yup.string()
   .trim()
-  .required('No puede estar vacío')
-  .url('El enlace debe ser una URL válida')
-  .notOneOf(feeds, 'RSS ya existe');
+  .required()
+  .url()
+  .notOneOf(feeds);
 
 const validateUrl = (url, feeds) => createSchema(feeds).validate(url);
 

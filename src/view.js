@@ -1,4 +1,5 @@
 import { subscribe } from 'valtio/vanilla';
+import { i18next } from './i18n.js';
 
 const renderForm = (state, elements) => {
   const { input, feedback, form } = elements;
@@ -9,7 +10,7 @@ const renderForm = (state, elements) => {
     input.classList.remove('is-valid');
     feedback.classList.add('text-danger');
     feedback.classList.remove('text-success');
-    feedback.textContent = error;
+    feedback.textContent = i18next.t(error);
     return;
   }
 
