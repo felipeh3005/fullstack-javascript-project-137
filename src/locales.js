@@ -9,6 +9,8 @@ export default {
         required: 'No puede estar vacío',
         invalidUrl: 'El enlace debe ser una URL válida',
         duplicate: 'RSS ya existe',
+        parse: 'El recurso no contiene un RSS válido',
+        network: 'Error de red',
       },
     },
   },

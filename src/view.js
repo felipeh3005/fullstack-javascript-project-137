@@ -25,6 +25,13 @@ const renderForm = (state, elements) => {
     return;
   }
 
+  if (processState === 'sending') {
+    feedback.classList.remove('text-danger');
+    feedback.classList.remove('text-success');
+    feedback.textContent = '';
+    return;
+  }
+
   input.classList.remove('is-invalid');
   input.classList.remove('is-valid');
   feedback.classList.remove('text-danger');
@@ -32,11 +39,68 @@ const renderForm = (state, elements) => {
   feedback.textContent = '';
 };
 
-const initView = (state, elements) => {
+const renderFeeds = (state, elements) => {
+  const { feedsContainer } = elements;
+
+  if (state.feeds.length === 0) {
+    feedsContainer.innerHTML = `
+      <h2 class="h5">Feeds</h2>
+      <p class="text-muted mb-0">No feeds added yet.</p>
+    `;
+    return;
+  }
+
+  const feedsMarkup = state.feeds.map((feed) => `
+    <li class="list-group-item border-0 px-0 py-2">
+      <h3 class="h6 mb-1">${feed.title}</h3>
+      <p class="mb-0 text-muted">${feed.description}</p>
+    </li>
+  `).join('');
+
+  feedsContainer.innerHTML = `
+    <h2 class="h5">Feeds</h2>
+    <ul class="list-group list-group-flush border-0">
+      ${feedsMarkup}
+    </ul>
+  `;
+};
+
+const renderPosts = (state, elements) => {
+  const { postsContainer } = elements;
+
+  if (state.posts.length === 0) {
+    postsContainer.innerHTML = `
+      <h2 class="h5">Posts</h2>
+      <p class="text-muted mb-0">No posts to display yet.</p>
+    `;
+    return;
+  }
+
+  const postsMarkup = state.posts.map((post) => `
+    <li class="list-group-item border-0 px-0 py-2">
+      <a href="${post.link}" target="_blank" rel="noopener noreferrer">${post.title}</a>
+    </li>
+  `).join('');
+
+  postsContainer.innerHTML = `
+    <h2 class="h5">Posts</h2>
+    <ul class="list-group list-group-flush border-0">
+      ${postsMarkup}
+    </ul>
+  `;
+};
+
+const render = (state, elements) => {
   renderForm(state, elements);
+  renderFeeds(state, elements);
+  renderPosts(state, elements);
+};
+
+const initView = (state, elements) => {
+  render(state, elements);
 
   subscribe(state, () => {
-    renderForm(state, elements);
+    render(state, elements);
   });
 };
 
