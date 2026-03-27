@@ -2,7 +2,7 @@ import i18next from 'i18next';
 import resources from './locales.js';
 
 const initI18n = () => i18next.init({
-  lng: 'es',
+  lng: 'ru',
   debug: false,
   resources,
 });

@@ -20,8 +20,8 @@ const renderForm = (state, elements) => {
     input.classList.remove('is-invalid');
     input.classList.remove('is-valid');
     feedback.classList.remove('text-danger');
-    feedback.classList.remove('text-success');
-    feedback.textContent = '';
+    feedback.classList.add('text-success');
+    feedback.textContent = i18next.t('form.success');
     return;
   }
 
@@ -44,7 +44,7 @@ const renderFeeds = (state, elements) => {
 
   if (state.feeds.length === 0) {
     feedsContainer.innerHTML = `
-      <h2 class="h5">Feeds</h2>
+      <h2 class="h5">${i18next.t('sections.feeds')}</h2>
       <p class="text-muted mb-0">No feeds added yet.</p>
     `;
     return;
@@ -58,7 +58,7 @@ const renderFeeds = (state, elements) => {
   `).join('');
 
   feedsContainer.innerHTML = `
-    <h2 class="h5">Feeds</h2>
+    <h2 class="h5">${i18next.t('sections.feeds')}</h2>
     <ul class="list-group list-group-flush border-0">
       ${feedsMarkup}
     </ul>
@@ -72,7 +72,7 @@ const renderPosts = (state, elements) => {
 
   if (state.posts.length === 0) {
     postsContainer.innerHTML = `
-      <h2 class="h5">Posts</h2>
+      <h2 class="h5">${i18next.t('sections.posts')}</h2>
       <p class="text-muted mb-0">No posts to display yet.</p>
     `;
     return;
@@ -97,14 +97,14 @@ const renderPosts = (state, elements) => {
           class="btn btn-outline-primary btn-sm preview-button flex-shrink-0"
           data-id="${post.id}"
         >
-          Vista previa
+          ${i18next.t('buttons.preview')}
         </button>
       </li>
     `;
   }).join('');
 
   postsContainer.innerHTML = `
-    <h2 class="h5">Posts</h2>
+    <h2 class="h5">${i18next.t('sections.posts')}</h2>
     <ul class="list-group list-group-flush border-0">
       ${postsMarkup}
     </ul>
@@ -123,7 +123,7 @@ const renderModal = (state, elements) => {
   }
 
   modalTitle.textContent = currentPost.title;
-  modalDescription.textContent = currentPost.description;
+  modalDescription.textContent = currentPost.description || i18next.t('modal.fallbackDescription');
   modalLink.setAttribute('href', currentPost.link);
 };
 

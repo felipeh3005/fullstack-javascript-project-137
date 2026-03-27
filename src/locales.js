@@ -1,16 +1,29 @@
 export default {
-  es: {
+  ru: {
     translation: {
       form: {
-        submit: 'Añadir',
+        submit: 'Добавить',
         label: 'RSS link',
+        success: 'RSS загружен успешно',
+      },
+      buttons: {
+        preview: 'Просмотр',
+        close: 'Закрыть',
+        readFull: 'Читать полностью',
+      },
+      sections: {
+        feeds: 'Фиды',
+        posts: 'Посты',
       },
       errors: {
-        required: 'No puede estar vacío',
-        invalidUrl: 'El enlace debe ser una URL válida',
-        duplicate: 'RSS ya existe',
-        parse: 'El recurso no contiene un RSS válido',
-        network: 'Error de red',
+        required: 'Не должно быть пустым',
+        invalidUrl: 'Ссылка должна быть валидным URL',
+        duplicate: 'RSS уже существует',
+        parse: 'Ресурс не содержит валидный RSS',
+        network: 'Ошибка сети',
+      },
+      modal: {
+        fallbackDescription: 'Цель: научиться извлекать из дерева необходимые данные',
       },
     },
   },

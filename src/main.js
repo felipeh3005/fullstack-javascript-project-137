@@ -20,6 +20,7 @@ const elements = {
   modalTitle: document.querySelector('#postModalLabel'),
   modalDescription: document.querySelector('.modal-description'),
   modalLink: document.querySelector('.modal-link'),
+  modalCloseButton: document.querySelector('.modal-footer .btn-secondary'),
 };
 
 const modal = new Modal(elements.modalElement);
@@ -27,6 +28,8 @@ const modal = new Modal(elements.modalElement);
 const renderStaticTexts = () => {
   elements.label.textContent = i18next.t('form.label');
   elements.submit.textContent = i18next.t('form.submit');
+  elements.modalCloseButton.textContent = i18next.t('buttons.close');
+  elements.modalLink.textContent = i18next.t('buttons.readFull');
 };
 
 const getFeedUrls = (feeds) => feeds.map((feed) => feed.url);
@@ -67,15 +70,11 @@ const handleSuccess = (url, data) => {
   addFeedDataToState(url, data);
   state.form.error = null;
   state.form.processState = 'added';
-
-  return Promise.resolve().then(() => {
-    state.form.processState = 'filling';
-  });
 };
 
 const getErrorKey = (error) => {
-  if (error.message === 'errors.parse') {
-    return 'errors.parse';
+  if (error instanceof Error && error.message.startsWith('errors.')) {
+    return error.message;
   }
 
   return 'errors.network';
@@ -93,7 +92,7 @@ const processFeed = (url) => fetchFeed(url)
 
 const watchInput = () => {
   elements.input.addEventListener('input', () => {
-    if (state.form.processState === 'invalid') {
+    if (state.form.processState === 'invalid' || state.form.processState === 'added') {
       state.form.processState = 'filling';
       state.form.error = null;
     }
