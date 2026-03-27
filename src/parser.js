@@ -12,7 +12,7 @@ const getRequiredElement = (parent, selector) => {
   return element
 }
 
-const parseFeed = document => {
+const parseFeed = (document) => {
   const channel = getRequiredElement(document, 'channel')
 
   return {
@@ -21,17 +21,17 @@ const parseFeed = document => {
   }
 }
 
-const parsePosts = document => {
+const parsePosts = (document) => {
   const items = document.querySelectorAll('item')
 
-  return Array.from(items).map(item => ({
+  return Array.from(items).map((item) => ({
     title: getRequiredElement(item, 'title').textContent,
     link: getRequiredElement(item, 'link').textContent,
     description: getRequiredElement(item, 'description').textContent,
   }))
 }
 
-const parseRss = contents => {
+const parseRss = (contents) => {
   const parser = new DOMParser()
   const document = parser.parseFromString(contents, 'application/xml')
   const parsingError = document.querySelector('parsererror')

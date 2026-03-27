@@ -10,7 +10,7 @@ yup.setLocale({
   },
 })
 
-const createSchema = feeds => yup.string()
+const createSchema = (feeds) => yup.string()
   .trim()
   .required()
   .url()
