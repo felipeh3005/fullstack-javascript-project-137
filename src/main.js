@@ -7,6 +7,7 @@ import initI18n, { i18next } from './i18n.js';
 import fetchFeed from './request.js';
 import parseRss from './parser.js';
 import scheduleUpdates from './updater.js';
+import createId from './utils.js';
 
 const elements = {
   form: document.querySelector('.rss-form'),
@@ -35,13 +36,13 @@ const renderStaticTexts = () => {
 const getFeedUrls = (feeds) => feeds.map((feed) => feed.url);
 
 const createFeed = (url, feed) => ({
-  id: crypto.randomUUID(),
+  id: createId(),
   url,
   ...feed,
 });
 
 const createPosts = (feedId, posts) => posts.map((post) => ({
-  id: crypto.randomUUID(),
+  id: createId(),
   feedId,
   ...post,
 }));

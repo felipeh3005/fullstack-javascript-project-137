@@ -1,5 +1,6 @@
 import fetchFeed from './request.js';
 import parseRss from './parser.js';
+import createId from './utils.js';
 
 const createNewPosts = (currentPosts, posts, feedId) => {
   const existingLinks = currentPosts.map((post) => post.link);
@@ -7,7 +8,7 @@ const createNewPosts = (currentPosts, posts, feedId) => {
   return posts
     .filter((post) => !existingLinks.includes(post.link))
     .map((post) => ({
-      id: crypto.randomUUID(),
+      id: createId(),
       feedId,
       ...post,
     }));
