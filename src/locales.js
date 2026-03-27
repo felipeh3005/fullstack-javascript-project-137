@@ -1,29 +1,29 @@
 export default {
-  ru: {
+  es: {
     translation: {
       form: {
-        submit: 'Добавить',
+        submit: 'Añadir',
         label: 'RSS link',
-        success: 'RSS загружен успешно',
+        success: 'El RSS se cargó correctamente',
       },
       buttons: {
-        preview: 'Просмотр',
-        close: 'Закрыть',
-        readFull: 'Читать полностью',
+        preview: 'Vista previa',
+        close: 'Cerrar',
+        readFull: 'Leer completo',
       },
       sections: {
-        feeds: 'Фиды',
-        posts: 'Посты',
+        feeds: 'Feeds',
+        posts: 'Posts',
       },
       errors: {
-        required: 'Не должно быть пустым',
-        invalidUrl: 'Ссылка должна быть валидным URL',
-        duplicate: 'RSS уже существует',
-        parse: 'Ресурс не содержит валидный RSS',
-        network: 'Ошибка сети',
+        required: 'No puede estar vacío',
+        invalidUrl: 'Debes ingresar una URL válida',
+        duplicate: 'El RSS ya existe',
+        parse: 'El recurso no contiene un RSS valido',
+        network: 'Error de red',
       },
       modal: {
-        fallbackDescription: 'Цель: научиться извлекать из дерева необходимые данные',
+        fallbackDescription: 'Objetivo: aprender a extraer del árbol los datos necesarios',
       },
     },
   },
