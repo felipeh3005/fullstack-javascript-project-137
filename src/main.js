@@ -17,7 +17,7 @@ const elements = {
   submit: document.querySelector('.rss-form button[type="submit"]'),
   feedsContainer: document.querySelector('.feeds'),
   postsContainer: document.querySelector('.posts'),
-  modalElement: document.querySelector('#postModal'),
+  modalElement: document.querySelector('#modal'),
   modalTitle: document.querySelector('#postModalLabel'),
   modalDescription: document.querySelector('.modal-description'),
   modalLink: document.querySelector('.modal-link'),
