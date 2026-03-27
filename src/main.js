@@ -55,13 +55,13 @@ const addFeedDataToState = (url, data) => {
   state.posts.push(...posts)
 }
 
-const markPostAsRead = postId => {
+const markPostAsRead = (postId) => {
   if (!state.ui.readPostsIds.includes(postId)) {
     state.ui.readPostsIds.push(postId)
   }
 }
 
-const handlePreview = postId => {
+const handlePreview = (postId) => {
   markPostAsRead(postId)
   state.ui.modalPostId = postId
   modal.show()
@@ -73,7 +73,7 @@ const handleSuccess = (url, data) => {
   state.form.processState = 'added'
 }
 
-const getErrorKey = error => {
+const getErrorKey = (error) => {
   if (error instanceof Error && error.message.startsWith('errors.')) {
     return error.message
   }
@@ -81,7 +81,7 @@ const getErrorKey = error => {
   return 'errors.network'
 }
 
-const handleError = error => {
+const handleError = (error) => {
   state.form.error = getErrorKey(error)
   state.form.processState = 'invalid'
 }
@@ -101,7 +101,7 @@ const watchInput = () => {
 }
 
 const watchPosts = () => {
-  elements.postsContainer.addEventListener('click', event => {
+  elements.postsContainer.addEventListener('click', (event) => {
     const previewButton = event.target.closest('.preview-button')
     const postLink = event.target.closest('a[data-id]')
 
@@ -119,7 +119,7 @@ const watchPosts = () => {
 }
 
 const watchForm = () => {
-  elements.form.addEventListener('submit', event => {
+  elements.form.addEventListener('submit', (event) => {
     event.preventDefault()
 
     const formData = new FormData(elements.form)

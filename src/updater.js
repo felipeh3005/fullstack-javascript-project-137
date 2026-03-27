@@ -18,10 +18,10 @@ const fetchNewPosts = (feed, currentPosts) => fetchFeed(feed.url)
   .then(parseRss)
   .then(data => createNewPosts(currentPosts, data.posts, feed.id))
 
-const scheduleUpdates = state => {
+const scheduleUpdates = (state) => {
   const run = () => Promise.all(
     state.feeds.map(feed => fetchNewPosts(feed, state.posts)
-      .then(posts => {
+      .then((posts) => {
         if (posts.length > 0) {
           state.posts.unshift(...posts)
         }

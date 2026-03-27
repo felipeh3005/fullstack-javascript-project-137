@@ -78,7 +78,7 @@ const renderPosts = (state, elements) => {
     return
   }
 
-  const postsMarkup = state.posts.map(post => {
+  const postsMarkup = state.posts.map((post) => {
     const titleClass = isReadPost(state, post.id)
       ? 'fw-normal link-secondary'
       : 'fw-bold'
