@@ -5,6 +5,7 @@ import validateUrl from './validation.js';
 import initI18n, { i18next } from './i18n.js';
 import fetchFeed from './request.js';
 import parseRss from './parser.js';
+import scheduleUpdates from './updater.js';
 
 const elements = {
   form: document.querySelector('.rss-form'),
@@ -101,4 +102,5 @@ initI18n().then(() => {
   initView(state, elements);
   watchInput();
   watchForm();
+  scheduleUpdates(state);
 });
