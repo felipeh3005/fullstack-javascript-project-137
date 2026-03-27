@@ -79,7 +79,9 @@ const renderPosts = (state, elements) => {
   }
 
   const postsMarkup = state.posts.map((post) => {
-    const titleClass = isReadPost(state, post.id) ? 'fw-normal' : 'fw-bold';
+    const titleClass = isReadPost(state, post.id)
+    ? 'fw-normal link-secondary'
+    : 'fw-bold';
 
     return `
       <li class="list-group-item border-0 px-0 py-2 d-flex justify-content-between align-items-start gap-2">
