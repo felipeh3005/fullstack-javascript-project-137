@@ -1,4 +1,4 @@
-import { proxy } from 'valtio/vanilla';
+import { proxy } from 'valtio/vanilla'
 
 const state = proxy({
   form: {
@@ -11,6 +11,6 @@ const state = proxy({
     readPostsIds: [],
     modalPostId: null,
   },
-});
+})
 
-export default state;
+export default state

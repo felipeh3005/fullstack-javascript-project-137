@@ -1,4 +1,4 @@
-import * as yup from 'yup';
+import * as yup from 'yup'
 
 yup.setLocale({
   mixed: {
@@ -8,14 +8,14 @@ yup.setLocale({
   string: {
     url: 'errors.invalidUrl',
   },
-});
+})
 
-const createSchema = (feeds) => yup.string()
+const createSchema = feeds => yup.string()
   .trim()
   .required()
   .url()
-  .notOneOf(feeds);
+  .notOneOf(feeds)
 
-const validateUrl = (url, feeds) => createSchema(feeds).validate(url);
+const validateUrl = (url, feeds) => createSchema(feeds).validate(url)
 
-export default validateUrl;
+export default validateUrl
