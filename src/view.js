@@ -50,7 +50,7 @@ const renderFeeds = (state, elements) => {
     return
   }
 
-  const feedsMarkup = state.feeds.map((feed) => `
+  const feedsMarkup = state.feeds.map(feed => `
     <li class="list-group-item border-0 px-0 py-2">
       <h3 class="h6 mb-1">${feed.title}</h3>
       <p class="mb-0 text-muted">${feed.description}</p>
@@ -78,7 +78,7 @@ const renderPosts = (state, elements) => {
     return
   }
 
-  const postsMarkup = state.posts.map((post) => {
+  const postsMarkup = state.posts.map(post => {
     const titleClass = isReadPost(state, post.id)
       ? 'fw-normal link-secondary'
       : 'fw-bold'
@@ -115,7 +115,7 @@ const renderPosts = (state, elements) => {
 
 const renderModal = (state, elements) => {
   const { modalTitle, modalDescription, modalLink } = elements
-  const currentPost = state.posts.find((post) => post.id === state.ui.modalPostId)
+  const currentPost = state.posts.find(post => post.id === state.ui.modalPostId)
 
   if (!currentPost) {
     modalTitle.textContent = ''

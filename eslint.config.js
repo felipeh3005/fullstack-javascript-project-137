@@ -17,7 +17,7 @@ export default defineConfig([
     rules: {
       '@stylistic/quotes': ['error', 'single'],
       '@stylistic/semi': ['error', 'never'],
-      '@stylistic/arrow-parens': ['error', 'always'],
+      '@stylistic/arrow-parens': ['error', 'as-needed'],
       '@stylistic/eol-last': ['error', 'always'],
       '@stylistic/indent': ['error', 2],
     },
