@@ -65,6 +65,8 @@ const renderFeeds = (state, elements) => {
   `;
 };
 
+const isReadPost = (state, postId) => state.ui.readPostsIds.includes(postId);
+
 const renderPosts = (state, elements) => {
   const { postsContainer } = elements;
 
@@ -76,11 +78,30 @@ const renderPosts = (state, elements) => {
     return;
   }
 
-  const postsMarkup = state.posts.map((post) => `
-    <li class="list-group-item border-0 px-0 py-2">
-      <a href="${post.link}" target="_blank" rel="noopener noreferrer">${post.title}</a>
-    </li>
-  `).join('');
+  const postsMarkup = state.posts.map((post) => {
+    const titleClass = isReadPost(state, post.id) ? 'fw-normal' : 'fw-bold';
+
+    return `
+      <li class="list-group-item border-0 px-0 py-2 d-flex justify-content-between align-items-start gap-2">
+        <a
+          href="${post.link}"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-id="${post.id}"
+          class="${titleClass}"
+        >
+          ${post.title}
+        </a>
+        <button
+          type="button"
+          class="btn btn-outline-primary btn-sm preview-button flex-shrink-0"
+          data-id="${post.id}"
+        >
+          Vista previa
+        </button>
+      </li>
+    `;
+  }).join('');
 
   postsContainer.innerHTML = `
     <h2 class="h5">Posts</h2>
@@ -90,10 +111,27 @@ const renderPosts = (state, elements) => {
   `;
 };
 
+const renderModal = (state, elements) => {
+  const { modalTitle, modalDescription, modalLink } = elements;
+  const currentPost = state.posts.find((post) => post.id === state.ui.modalPostId);
+
+  if (!currentPost) {
+    modalTitle.textContent = '';
+    modalDescription.textContent = '';
+    modalLink.setAttribute('href', '#');
+    return;
+  }
+
+  modalTitle.textContent = currentPost.title;
+  modalDescription.textContent = currentPost.description;
+  modalLink.setAttribute('href', currentPost.link);
+};
+
 const render = (state, elements) => {
   renderForm(state, elements);
   renderFeeds(state, elements);
   renderPosts(state, elements);
+  renderModal(state, elements);
 };
 
 const initView = (state, elements) => {

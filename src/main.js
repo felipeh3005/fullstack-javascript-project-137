@@ -1,4 +1,5 @@
 import './style.css';
+import Modal from 'bootstrap/js/dist/modal.js';
 import state from './state.js';
 import initView from './view.js';
 import validateUrl from './validation.js';
@@ -15,7 +16,13 @@ const elements = {
   submit: document.querySelector('.rss-form button[type="submit"]'),
   feedsContainer: document.querySelector('.feeds'),
   postsContainer: document.querySelector('.posts'),
+  modalElement: document.querySelector('#postModal'),
+  modalTitle: document.querySelector('#postModalLabel'),
+  modalDescription: document.querySelector('.modal-description'),
+  modalLink: document.querySelector('.modal-link'),
 };
+
+const modal = new Modal(elements.modalElement);
 
 const renderStaticTexts = () => {
   elements.label.textContent = i18next.t('form.label');
@@ -42,6 +49,18 @@ const addFeedDataToState = (url, data) => {
 
   state.feeds.push(feed);
   state.posts.push(...posts);
+};
+
+const markPostAsRead = (postId) => {
+  if (!state.ui.readPostsIds.includes(postId)) {
+    state.ui.readPostsIds.push(postId);
+  }
+};
+
+const handlePreview = (postId) => {
+  markPostAsRead(postId);
+  state.ui.modalPostId = postId;
+  modal.show();
 };
 
 const handleSuccess = (url, data) => {
@@ -81,6 +100,24 @@ const watchInput = () => {
   });
 };
 
+const watchPosts = () => {
+  elements.postsContainer.addEventListener('click', (event) => {
+    const previewButton = event.target.closest('.preview-button');
+    const postLink = event.target.closest('a[data-id]');
+
+    if (previewButton) {
+      const { id } = previewButton.dataset;
+      handlePreview(id);
+      return;
+    }
+
+    if (postLink) {
+      const { id } = postLink.dataset;
+      markPostAsRead(id);
+    }
+  });
+};
+
 const watchForm = () => {
   elements.form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -101,6 +138,7 @@ initI18n().then(() => {
   renderStaticTexts();
   initView(state, elements);
   watchInput();
+  watchPosts();
   watchForm();
   scheduleUpdates(state);
 });

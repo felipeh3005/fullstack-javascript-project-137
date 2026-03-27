@@ -7,6 +7,10 @@ const state = proxy({
   },
   feeds: [],
   posts: [],
+  ui: {
+    readPostsIds: [],
+    modalPostId: null,
+  },
 });
 
 export default state;
